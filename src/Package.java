@@ -1,19 +1,17 @@
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Package {
     private Product product;
-    private Date entryDate;
-    private Date expirationDate;
-    private double quantity;
-    private String unitType;
+    private LocalDate entryDate;
+    private LocalDate expirationDate;
     private int stockQuantity;
+    private double discount;
 
-    public Package(Product product, Date entryDate, Date expirationDate, double quantity, String unitType, int stockQuantity) {
+    public Package(Product product, LocalDate expirationDate, int stockQuantity) {
         this.product = product;
-        this.entryDate = entryDate;
+        this.entryDate = LocalDate.now();
         this.expirationDate = expirationDate;
-        this.quantity = quantity;
-        this.unitType = unitType;
         this.stockQuantity = stockQuantity;
     }
 
@@ -25,31 +23,39 @@ public class Package {
         this.product = product;
     }
 
-    public Date getEntryDate() {
+    public LocalDate getEntryDate() {
         return entryDate;
     }
 
-    public void setEntryDate(Date entryDate) {
+    public void setEntryDate(LocalDate entryDate) {
         this.entryDate = entryDate;
     }
 
-    public Date getExpirationDate() {
+    public LocalDate getExpirationDate() {
         return expirationDate;
     }
 
-    public void setExpirationDate(Date expirationDate) {
+    public void setExpirationDate(LocalDate expirationDate) {
         this.expirationDate = expirationDate;
     }
 
-    public double getQuantity() {
-        return quantity;
+    public int getStockQuantity() {
+        return stockQuantity;
     }
 
-    public void setQuantity(double quantity) {
-        this.quantity = quantity;
+    public void setStockQuantity(int stockQuantity) {
+        this.stockQuantity = stockQuantity;
     }
 
-//    private void allocateBaggageType (int quantity) {
+    public double getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(double discount) {
+        this.discount = discount;
+    }
+
+    //    private void allocateBaggageType (int quantity) {
 //        if(quantity >= 15 && quantity <= 25) {
 //            this.unitType = "Bag";
 //        } else if (quantity >= 30 && quantity <= 60) {
@@ -60,4 +66,7 @@ public class Package {
 //            this.unitType = "Pack";
 //        }
 //    }
+
+
+
 }
