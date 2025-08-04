@@ -15,6 +15,13 @@ public class Package {
         this.stockQuantity = stockQuantity;
     }
 
+    public Package(Product product, LocalDate entryDate, LocalDate expirationDate, int stockQuantity) {
+        this.product = product;
+        this.entryDate = entryDate;
+        this.expirationDate = expirationDate;
+        this.stockQuantity = stockQuantity;
+    }
+
     public Package() {
     }
 
