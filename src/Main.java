@@ -17,7 +17,7 @@ public class Main {
         Package potatoePackage = new Package(potatoe, LocalDate.now().plus(2, ChronoUnit.WEEKS),45);
 
         Storage warehouse = new Storage();
-        generateRandomProduct(warehouse,20);
+        generateRandomProduct(warehouse,5);
 //        warehouse.addPackage(applePackage);
 //        warehouse.addPackage(potatoePackage);
 //        warehouse.addPackage(orangePackage);

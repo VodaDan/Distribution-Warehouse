@@ -7,6 +7,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Storage {
     private ArrayList<Package> packages;
@@ -86,18 +87,28 @@ public class Storage {
         }
         return totals;
     }
-    // Calculate ex: Apples: 1025kg, Total price: 5000, Average Price: 34, Average Discount: 12% .
+    // Calculate ex: Apples: 1025kg, Total price: 5000, Average Price: 34, Total Packages , Average Discount: 12% .
     public HashMap<String,ArrayList<Integer>> calculateAverage() {
         HashMap<String,ArrayList<Integer>> productDetails = new HashMap<>();
+
         for(Package pack: packages) {
-            String category = pack.getProduct().getProductCategory();
+            String category = pack.getProduct().getName();
+            if(!(productDetails.entrySet().contains(category))){
+                productDetails.put(category,new ArrayList<>());
+                productDetails.get(category).add(0);
+                productDetails.get(category).add(0);
+                productDetails.get(category).add(1);
+                productDetails.get(category).add(1);
+                productDetails.get(category).add(1);
+            }
             int newPrice = (int)(pack.getStockQuantity()*pack.getProduct().getQuantity());
             int newQuantity = (int)(pack.getStockQuantity()*pack.getProduct().getQuantity());
             int newDiscount = (int)(pack.getDiscount());
-            productDetails.get(category).add(0,(int)(productDetails.get(category).get(0)+newQuantity));
-            productDetails.get(category).add(1,(int)(productDetails.get(category).get(1)+newPrice));
-            productDetails.get(category).add(2,(productDetails.get(category).get(1)/productDetails.get(category).get(0)));
-            productDetails.get(category).add(3,(int)(productDetails.get(category).get(2)+(pack.getStockQuantity()*pack.getProduct().getQuantity())));
+            productDetails.get(category).add(0,(int)(productDetails.get(category).get(0)+newQuantity)); // Total Quantities
+            productDetails.get(category).add(1,(int)(productDetails.get(category).get(1)+newPrice)); // Total Price
+            productDetails.get(category).add(2,(productDetails.get(category).get(1)/productDetails.get(category).get(0))); // Average price
+            productDetails.get(category).add(3,(int)(productDetails.get(category).get(3)+1)); // Total packages
+            productDetails.get(category).add(4,(int)(productDetails.get(category).get(3)/productDetails.get(category).get(3))); // Average Discount
         }
         return productDetails;
     }
@@ -138,6 +149,19 @@ public class Storage {
         }
         writer.println();
         System.out.println();
+        HashMap<String,ArrayList<Integer>> individualDetailsPerProductType = calculateAverage();
+        writer.println();
+        for(HashMap.Entry<String,ArrayList<Integer>> productType:individualDetailsPerProductType.entrySet()) {
+            // Format: Apples: 1025kg, Total price: 5000, Average Price: 34, Total Packages , Average Discount: 12% .
+            int quantities = productType.getValue().get(0);
+            int price = productType.getValue().get(1);
+            int averagePrice = productType.getValue().get(2);
+            int totalPackages = productType.getValue().get(3);
+            int averageDiscount = productType.getValue().get(4);
+            writer.printf("%-10s: Quantity:%-6d, Total price:%-6d, Average Price:%-6d, Total Packages:%-3d, Average Discount:%-2d .",
+                    productType.getKey(),quantities,price,averagePrice,totalPackages,averageDiscount);
+            writer.println();
+        }
         writer.close();
     }
 
