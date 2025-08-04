@@ -30,8 +30,6 @@ public class Storage {
             case "Others":
                 this.totalOthers = (int)(this.totalOthers + pack.getStockQuantity() * pack.getProduct().getQuantity());
                 break;
-
-
         }
     }
 
@@ -88,11 +86,18 @@ public class Storage {
         }
         return totals;
     }
-
+    // Calculate ex: Apples: 1025kg, Total price: 5000, Average Price: 34, Average Discount: 12% .
     public HashMap<String,ArrayList<Integer>> calculateAverage() {
         HashMap<String,ArrayList<Integer>> productDetails = new HashMap<>();
         for(Package pack: packages) {
-
+            String category = pack.getProduct().getProductCategory();
+            int newPrice = (int)(pack.getStockQuantity()*pack.getProduct().getQuantity());
+            int newQuantity = (int)(pack.getStockQuantity()*pack.getProduct().getQuantity());
+            int newDiscount = (int)(pack.getDiscount());
+            productDetails.get(category).add(0,(int)(productDetails.get(category).get(0)+newQuantity));
+            productDetails.get(category).add(1,(int)(productDetails.get(category).get(1)+newPrice));
+            productDetails.get(category).add(2,(productDetails.get(category).get(1)/productDetails.get(category).get(0)));
+            productDetails.get(category).add(3,(int)(productDetails.get(category).get(2)+(pack.getStockQuantity()*pack.getProduct().getQuantity())));
         }
         return productDetails;
     }
