@@ -17,7 +17,7 @@ public class Main {
         Package potatoePackage = new Package(potatoe, LocalDate.now().plus(2, ChronoUnit.WEEKS),45);
 
         Storage warehouse = new Storage();
-        generateRandomProduct(warehouse,200);
+        generateRandomProduct(warehouse,20);
 //        warehouse.addPackage(applePackage);
 //        warehouse.addPackage(potatoePackage);
 //        warehouse.addPackage(orangePackage);
@@ -28,10 +28,12 @@ public class Main {
     }
 
     public static void generateRandomProduct (Storage warehouse, int numberOfProducts) {
+            // Creating lists for random elements
             ArrayList<String> fruits = new ArrayList<>();
             fruits.add("Apple");
             fruits.add("Orange");
             fruits.add("Peaches");
+            fruits.add("Kiwi");
 
             ArrayList<String> vegetables = new ArrayList<>();
             vegetables.add("Potato");
@@ -44,6 +46,7 @@ public class Main {
             others.add("Cocoa");
 
             String productCategory;
+
         for(int i = 0; i< numberOfProducts;i++) {
 
             Random random = new Random();
@@ -61,16 +64,16 @@ public class Main {
             } else {
                 unitType = "Kg";
             }
+
             String randomElement = "Others";
 
-
+            // for case 0 a fruit will be generated, for 1 a vegetable, and for 2 "other" products
             int path = random.nextInt(3);
             switch (path) {
                 case 0:
                     //Generating a fruit
                     randomElement = fruits.get(random.nextInt(fruits.size()));
                     productCategory = "Fruits";
-
                     break;
                 case 1:
                     //Generating a vegetable

@@ -1,0 +1,28 @@
+----Warehouse summary----
+   
+Fruits: Total: 6907 Kg, Total Price: 856
+  Peaches: 3 Bag(75 Kg), Unit Price:31 , Total Price: 93, Discount: 0%(0) .
+  Kiwi: 9 Kg, Unit Price:5 , Total Price: 45, Discount: 0%(0) .
+  Peaches: 9 Pack(2070 Kg), Unit Price:10 , Total Price: 90, Discount: 0%(0) .
+  Apple: 5 Pack(1045 Kg), Unit Price:31 , Total Price: 155, Discount: 0%(0) .
+  Peaches: 6 Box(336 Kg), Unit Price:37 , Total Price: 222, Discount: 0%(0) .
+  Kiwi: 1 Pack(187 Kg), Unit Price:49 , Total Price: 49, Discount: 0%(0) .
+  Kiwi: 8 Pack(2152 Kg), Unit Price:25 , Total Price: 200, Discount: 0%(0) .
+  Peaches: 2 Pack(268 Kg), Unit Price:1 , Total Price: 2, Discount: 0%(0) .
+   
+Vegetables: Total: 1997 Kg, Total Price: 781
+  Onions: 9 Kg, Unit Price:46 , Total Price: 414, Discount: 0%(0) .
+  Tomato: 1 Pack(112 Kg), Unit Price:35 , Total Price: 35, Discount: 5%(2) .
+  Potato: 7 Box(406 Kg), Unit Price:10 , Total Price: 71, Discount: 15%(11) .
+  Tomato: 6 Pack(1134 Kg), Unit Price:39 , Total Price: 234, Discount: 5%(12) .
+  Tomato: 1 Pack(170 Kg), Unit Price:11 , Total Price: 11, Discount: 0%(0) .
+  Tomato: 1 Pack(130 Kg), Unit Price:17 , Total Price: 17, Discount: 0%(0) .
+   
+Others: Total: 5226 Kg, Total Price: 921
+  Cocoa: 10 Pack(1540 Kg), Unit Price:35 , Total Price: 350, Discount: 0%(0) .
+  Cocoa: 3 Pack(888 Kg), Unit Price:40 , Total Price: 120, Discount: 0%(0) .
+  Milk: 1 Kg, Unit Price:22 , Total Price: 22, Discount: 0%(0) .
+  Crackers: 5 Pack(610 Kg), Unit Price:21 , Total Price: 105, Discount: 0%(0) .
+  Crackers: 4 Pack(1144 Kg), Unit Price:36 , Total Price: 144, Discount: 0%(0) .
+  Milk: 6 Pack(960 Kg), Unit Price:30 , Total Price: 180, Discount: 0%(0) .
+

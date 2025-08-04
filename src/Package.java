@@ -12,6 +12,8 @@ public class Package {
         this.product = product;
         this.entryDate = LocalDate.now();
         this.expirationDate = expirationDate;
+
+        // If the products arrived in Kilos , we will just use the quantity as it has no package
         if(product.getUnitType().equals("Kg")){
             this.stockQuantity = (int)(product.getQuantity());
         } else {
@@ -69,7 +71,7 @@ public class Package {
 
     public void setDiscount(double discount) {
         this.discount = discount;
-        this.product.setPrice(this.product.getPrice() * (discount/100));
+        this.product.setPrice(this.product.getPrice() * (1-discount/100));
     }
 
     //    private void allocateBaggageType (int quantity) {

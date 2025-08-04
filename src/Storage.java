@@ -47,6 +47,7 @@ public class Storage {
         this.packages = packages;
     }
 
+    // method that prints packages for testing purpose
     public void printPackages() {
         int index = 1;
         this.applyDiscount();
@@ -58,6 +59,7 @@ public class Storage {
         }
     }
 
+    // method to calculate the quantities for products categories
     public HashMap<String,Integer> calculateTotalQuantities(){
         HashMap<String,Integer> totals = new HashMap<>();
         totals.put("Fruits",0);
@@ -72,6 +74,7 @@ public class Storage {
         return totals;
     }
 
+    // method to calculate the prices for products categories
     public HashMap<String,Integer> calculateTotalPrices(){
         HashMap<String,Integer> totals = new HashMap<>();
         totals.put("Fruits",0);
@@ -86,41 +89,44 @@ public class Storage {
         return totals;
     }
 
+    public HashMap<String,ArrayList<Integer>> calculateAverage() {
+        HashMap<String,ArrayList<Integer>> productDetails = new HashMap<>();
+        for(Package pack: packages) {
+
+        }
+        return productDetails;
+    }
 
 
+    // method to generate a report
     public void createReport() throws Exception {
         this.applyDiscount();
-        PrintWriter writer = new PrintWriter("Report.txt");
+        LocalDate today = LocalDate.now();
+        PrintWriter writer = new PrintWriter("Report_"+today+".txt");
         ArrayList<String> categories = new ArrayList<>();
 
-        //
         HashMap<String,Integer> totalQuantities = calculateTotalQuantities();
         HashMap<String,Integer> totalPrices = calculateTotalPrices();
 
         categories.add("Fruits");
         categories.add("Vegetables");
         categories.add("Others");
-
+        writer.println("----Warehouse summary----");
         for(String category : categories) {
             writer.println("   ");
             writer.print(category + ": Total: ");
             writer.println(totalQuantities.get(category) + " Kg, Total Price: " + totalPrices.get(category));
             for(Package pack: this.packages) {
                 if(category.equals(pack.getProduct().getProductCategory())) {
-//                    writer.println("  "+pack.getProduct().getName() + ": " + pack.getStockQuantity() + " " + pack.getProduct().getUnitType() +
-//                            "(" + (pack.getProduct().getQuantity() * pack.getStockQuantity()) + " Kg), Unit Price:" + pack.getProduct().getPrice() +
-//                            ", Total Price:" + (pack.getStockQuantity() * pack.getProduct().getPrice()) + ", Discount: " + pack.getDiscount() + "%(" +
-//                            ((pack.getStockQuantity() * pack.getProduct().getPrice()) * (pack.getDiscount()) / 100) + ")");
-
                     writer.print("  "+pack.getProduct().getName() + ": " + pack.getStockQuantity() + " "  + pack.getProduct().getUnitType() );
                     if(!(pack.getProduct().getUnitType().equals("Kg"))){
-                        writer.printf("(%.1f Kg), Unit Price:",(pack.getProduct().getQuantity()* pack.getStockQuantity()));
+                        writer.printf("(%.0f Kg), Unit Price:",(pack.getProduct().getQuantity()* pack.getStockQuantity()));
                     } else {
                         writer.printf(", Unit Price:");
                     }
 
-                    writer.printf("%.1f , Total Price: %.1f",(pack.getProduct().getPrice()),((pack.getStockQuantity() * pack.getProduct().getPrice())));
-                    writer.printf(", Discount: %.1f%%(%.1f)" ,pack.getDiscount(),((pack.getStockQuantity() * pack.getProduct().getPrice()) * (pack.getDiscount()) / 100));
+                    writer.printf("%.0f , Total Price: %.0f",(pack.getProduct().getPrice()),((pack.getStockQuantity() * pack.getProduct().getPrice())));
+                    writer.printf(", Discount: %.0f%%(%.0f) ." ,pack.getDiscount(),((pack.getStockQuantity() * pack.getProduct().getPrice()) * (pack.getDiscount()) / 100));
                     writer.println();
                 }
             }
@@ -131,8 +137,9 @@ public class Storage {
     }
 
     public void readReport() {
+        LocalDate today = LocalDate.now();
         try {
-            List<String> lines = Files.readAllLines(Paths.get("Report.txt"));
+            List<String> lines = Files.readAllLines(Paths.get("Report_"+today+".txt"));
             for (String line : lines) {
                 System.out.println(line);
             }
@@ -141,6 +148,7 @@ public class Storage {
         }
     }
 
+    // method to check the dates and apply discounts - this is called before generating a report
     public void applyDiscount() {
         for(Package pack : this.packages) {
             long weeksUntilExpiration = ChronoUnit.WEEKS.between(LocalDate.now(),pack.getExpirationDate());
