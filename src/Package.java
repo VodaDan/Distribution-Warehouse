@@ -12,7 +12,13 @@ public class Package {
         this.product = product;
         this.entryDate = LocalDate.now();
         this.expirationDate = expirationDate;
-        this.stockQuantity = stockQuantity;
+        if(product.getUnitType().equals("Kg")){
+            this.stockQuantity = (int)(product.getQuantity());
+        } else {
+            this.stockQuantity = stockQuantity;
+        }
+
+
     }
 
     public Package(Product product, LocalDate entryDate, LocalDate expirationDate, int stockQuantity) {

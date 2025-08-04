@@ -17,6 +17,7 @@ public class Main {
         Package potatoePackage = new Package(potatoe, LocalDate.now().plus(2, ChronoUnit.WEEKS),45);
 
         Storage warehouse = new Storage();
+        generateRandomProduct(warehouse,10);
 //        warehouse.addPackage(applePackage);
 //        warehouse.addPackage(potatoePackage);
 //        warehouse.addPackage(orangePackage);
@@ -24,18 +25,25 @@ public class Main {
 //        warehouse.printPackages();
         warehouse.createReport();
         warehouse.readReport();
-
-        System.out.println(orangePackage.getDiscount());
     }
 
     public static void generateRandomProduct (Storage warehouse, int numberOfProducts) {
+            ArrayList<String> fruits = new ArrayList<>();
+            fruits.add("Apple");
+            fruits.add("Orange");
+
+            ArrayList<String> vegetables = new ArrayList<>();
+            vegetables.add("Potato");
+            vegetables.add("Tomato");
+
+            ArrayList<String> others = new ArrayList<>();
+            others.add("Crackers");
+            others.add("Milk");
+            String productCategory;
         for(int i = 0; i< numberOfProducts;i++) {
 
-            ArrayList<String> fruits = new ArrayList<>();
-            String productCategory;
-            ArrayList<String> vegetables = new ArrayList<>();
             Random random = new Random();
-            double quantity = random.nextInt(500) + 1;
+            double quantity = random.nextInt(300) + 1;
             double price = random.nextInt(50) + 1;
             int quality = random.nextInt(6) + 4;
             String unitType;
@@ -56,19 +64,18 @@ public class Main {
             switch (path) {
                 case 0:
                     //Generating a fruit
-                    Random randFruit = new Random();
-                    randomElement = fruits.get(randFruit.nextInt(fruits.size()));
+                    randomElement = fruits.get(random.nextInt(fruits.size()));
                     productCategory = "Fruits";
 
                     break;
                 case 1:
                     //Generating a vegetable
-                    Random randVegetable = new Random();
-                    randomElement = vegetables.get(randVegetable.nextInt(vegetables.size()));
+                    randomElement = vegetables.get(random.nextInt(vegetables.size()));
                     productCategory = "Vegetables";
                     break;
                 default:
                     //Generating Others
+                    randomElement = others.get(random.nextInt(vegetables.size()));
                     productCategory = "Others";
                     break;
             }
