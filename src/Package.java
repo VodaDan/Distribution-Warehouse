@@ -15,6 +15,9 @@ public class Package {
         this.stockQuantity = stockQuantity;
     }
 
+    public Package() {
+    }
+
     public Product getProduct() {
         return product;
     }
@@ -53,6 +56,7 @@ public class Package {
 
     public void setDiscount(double discount) {
         this.discount = discount;
+        this.product.setPrice(this.product.getPrice() * (discount/100));
     }
 
     //    private void allocateBaggageType (int quantity) {

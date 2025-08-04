@@ -1,0 +1,10 @@
+   
+Fruits: Total: 1425 Kg, Total Price: 792
+  Apple: 15 Bag(225.0 Kg), Unit Price:40.0 , Total Price: 600.0, Discount: 0.0%(0.0)
+  Orange: 12 Pack(1200.0 Kg), Unit Price:16.0 , Total Price: 192.0, Discount: 40.0%(76.8)
+   
+Vegetables: Total: 2250 Kg, Total Price: 106
+  Potatoe: 45 Box(2250.0 Kg), Unit Price:2.4 , Total Price: 106.3, Discount: 15.0%(15.9)
+   
+Other: Total: 0 Kg, Total Price: 0
+
