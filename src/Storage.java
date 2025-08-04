@@ -35,6 +35,10 @@ public class Storage {
         }
     }
 
+    public void removePackage(Package pack) {
+        packages.remove(pack);
+    }
+
     public ArrayList<Package> getPackages() {
         return packages;
     }
@@ -88,11 +92,15 @@ public class Storage {
         this.applyDiscount();
         PrintWriter writer = new PrintWriter("Report.txt");
         ArrayList<String> categories = new ArrayList<>();
+
+        //
         HashMap<String,Integer> totalQuantities = calculateTotalQuantities();
         HashMap<String,Integer> totalPrices = calculateTotalPrices();
+
         categories.add("Fruits");
         categories.add("Vegetables");
         categories.add("Others");
+
         for(String category : categories) {
             writer.println("   ");
             writer.print(category + ": Total: ");
@@ -137,7 +145,10 @@ public class Storage {
         for(Package pack : this.packages) {
             long weeksUntilExpiration = ChronoUnit.WEEKS.between(LocalDate.now(),pack.getExpirationDate());
             String category = pack.getProduct().getProductCategory();
-
+            if(weeksUntilExpiration == 0) {
+                this.removePackage(pack);
+                continue;
+            }
             switch (category) {
                 case "Vegetables":
                     if(weeksUntilExpiration < 5){

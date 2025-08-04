@@ -17,7 +17,7 @@ public class Main {
         Package potatoePackage = new Package(potatoe, LocalDate.now().plus(2, ChronoUnit.WEEKS),45);
 
         Storage warehouse = new Storage();
-        generateRandomProduct(warehouse,10);
+        generateRandomProduct(warehouse,200);
 //        warehouse.addPackage(applePackage);
 //        warehouse.addPackage(potatoePackage);
 //        warehouse.addPackage(orangePackage);
@@ -31,14 +31,18 @@ public class Main {
             ArrayList<String> fruits = new ArrayList<>();
             fruits.add("Apple");
             fruits.add("Orange");
+            fruits.add("Peaches");
 
             ArrayList<String> vegetables = new ArrayList<>();
             vegetables.add("Potato");
             vegetables.add("Tomato");
+            vegetables.add("Onions");
 
             ArrayList<String> others = new ArrayList<>();
             others.add("Crackers");
             others.add("Milk");
+            others.add("Cocoa");
+
             String productCategory;
         for(int i = 0; i< numberOfProducts;i++) {
 
